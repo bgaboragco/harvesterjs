@@ -19,7 +19,9 @@
     "url": "https://github.com/agco/harvesterjs"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha && npm run lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "main": "./lib/harvester.js",
   "dependencies": {
@@ -35,20 +37,21 @@
     "lodash": "~3.7.0",
     "longjohn": "^0.2.4",
     "mkdirp": "~0.5.0",
-    "mongodb": "^1.4.26",
-    "mongojs": "^0.18.0",
-    "mongoose": "4.2.8",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.9.9",
     "node-uuid": "^1.4.3",
     "throttle-function": "^0.1.0",
     "tiny-sse": "git+https://github.com/agco/node-tiny-sse.git",
     "underscore.string": "^2.4.0",
-	"agco-logger": "git+https://github.com/agco/agco-logger.git#c14fba9712968a0509bbf2c69c33a167a6cc1b07"
+    "agco-logger": "git+https://github.com/agco/agco-logger.git#c14fba9712968a0509bbf2c69c33a167a6cc1b07"
   },
   "devDependencies": {
     "agco-event-source-stream": "^1.1.1",
     "chai": "^1.10.0",
     "chai-http": "^1.0.0",
     "coveralls": "^2.11.2",
+    "eslint": "^3.18.0",
+    "eslint-plugin-node": "^4.2.2",
     "istanbul": "^0.3.7",
     "mocha": "~1.20.1",
     "mocha-lcov-reporter": "0.0.2",
@@ -61,7 +64,7 @@
     "supertest": "~0.13.0"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=4.2.0"
   },
   "keywords": [
     "json",
