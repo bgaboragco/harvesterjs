@@ -1,4 +1,4 @@
-FROM node:4.2.0
+FROM node:8.4.0
 
 ENV HOME=/home/app/
 
