@@ -1,7 +1,7 @@
 {
   "name": "harvesterjs",
   "description": "a library which makes it easy to construct a JSON-API compliant REST API (http://jsonapi.org/) with Nodejs and Mongodb",
-  "version": "2.4.1",
+  "version": "3.2.1",
   "license": "MIT",
   "author": {
     "name": "Kristof Sajdak",
@@ -19,7 +19,9 @@
     "url": "https://github.com/agco/harvesterjs"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha && npm run lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "main": "./lib/harvester.js",
   "dependencies": {
@@ -35,9 +37,8 @@
     "lodash": "~3.7.0",
     "longjohn": "^0.2.4",
     "mkdirp": "~0.5.0",
-    "mongodb": "^1.4.26",
-    "mongojs": "^0.18.0",
-    "mongoose": "4.2.8",
+    "mongodb": "^2.2.26",
+    "mongoose": "4.10.8",
     "node-uuid": "^1.4.3",
     "throttle-function": "^0.1.0",
     "tiny-sse": "git+https://github.com/agco/node-tiny-sse.git",
@@ -49,8 +50,10 @@
     "chai": "^1.10.0",
     "chai-http": "^1.0.0",
     "coveralls": "^2.11.2",
+    "eslint": "^3.18.0",
+    "eslint-plugin-node": "^4.2.2",
     "istanbul": "^0.3.7",
-    "mocha": "~1.20.1",
+    "mocha": "3.4.2",
     "mocha-lcov-reporter": "0.0.2",
     "nock": "^0.56.0",
     "profanity-util": "0.0.2",
@@ -61,7 +64,7 @@
     "supertest": "~0.13.0"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": "8.4.0"
   },
   "keywords": [
     "json",

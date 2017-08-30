@@ -1,12 +1,15 @@
-var _ = require('lodash');
-var fs = require('fs');
-var path = require('path');
+'use strict';
+let _ = require('lodash');
+let fs = require('fs');
+let path = require('path');
 
 function FixturesSync() {
-  var fixtureList = fs.readdirSync(path.join(__dirname, './')).filter(function (item) {
-    return 'index.js' !== item;
-  });
-  var fixtures;
+  let fixtureList = fs
+    .readdirSync(path.join(__dirname, './'))
+    .filter(function(item) {
+      return item !== 'index.js';
+    });
+  let fixtures;
 
   if (!fixtures) {
     fixtures = {};
@@ -17,8 +20,8 @@ function FixturesSync() {
   return fixtures;
 }
 
-var standardFixture = FixturesSync();
+let standardFixture = FixturesSync();
 
-module.exports = function () {
+module.exports = function() {
   return _.cloneDeep(standardFixture);
 };
