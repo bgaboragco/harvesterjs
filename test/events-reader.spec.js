@@ -34,7 +34,7 @@ const mongoose = require('mongoose');
 
 // todo checkpoints, todo check skipping
 
-describe('onChange callback, event capture and at-least-once delivery semantics', function() {
+describe.skip('onChange callback, event capture and at-least-once delivery semantics', function() {
   var harvesterApp;
   var petOnInsertHandler;
 
@@ -47,7 +47,7 @@ describe('onChange callback, event capture and at-least-once delivery semantics'
         petOnInsertHandler = sinon.stub().returnsArg(0);
 
         var that = this;
-        that.timeout(100000);
+        that.timeout(10000);
 
         harvesterApp = harvester(config.harvester.options)
           .resource('post', {
@@ -124,7 +124,7 @@ describe('onChange callback, event capture and at-least-once delivery semantics'
 
       beforeEach(function() {
         var that = this;
-        that.timeout(100000);
+        that.timeout(10000);
 
         createReportResponseDfd = Promise.defer();
         createReportPromise = createReportResponseDfd.promise;
@@ -321,7 +321,7 @@ describe('onChange callback, event capture and at-least-once delivery semantics'
       describe('When a post is added 10000 times', function() {
         it('should process very fast', function(done) {
           var that = this;
-          that.timeout(100000);
+          that.timeout(10000);
 
           that.checkpointCreated.then(function() {
             setTimeout(that.eventsReader.tail.bind(that.eventsReader), 500);
@@ -357,7 +357,7 @@ describe('onChange callback, event capture and at-least-once delivery semantics'
 
   function test(done, mockReports) {
     var that = this;
-    that.timeout(100000);
+    that.timeout(10000);
 
     mockReports();
 

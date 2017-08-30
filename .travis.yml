@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '4.2.0'
+  - '8.4.0'
 services:
   - docker
 before_script:
@@ -17,4 +17,3 @@ deploy:
     tags: true
     repo: agco/harvesterjs
     branch: master
-
