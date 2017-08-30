@@ -105,11 +105,5 @@ describe('checkpoint writer', function() {
         done();
       });
     });
-<<<<<<< HEAD
-
   });
-
-=======
-  });
->>>>>>> a542c901e559bbc6015d531f1379cfea6dadf028
 });
