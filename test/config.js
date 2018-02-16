@@ -1,5 +1,5 @@
 'use strict';
-let harvesterPort = process.env.HARVESTER_PORT || 8000;
+let harvesterPort = process.env.HARVESTER_PORT || 9000;
 
 module.exports = {
   baseUrl: 'http://localhost:' + harvesterPort,
