@@ -99,14 +99,12 @@ describe('resources', function() {
         },
         body = { cats: [] };
       body.cats.push(cat);
-      return new Promise(function() {
-        request(config.baseUrl)
-          .post('/animals/cats')
-          .send(body)
-          .expect('Content-Type', /json/)
-          .expect(201)
-          .end(done);
-      }).then(done);
+      request(config.baseUrl)
+        .post('/animals/cats')
+        .send(body)
+        .expect('Content-Type', /json/)
+        .expect(201)
+        .end(done);
     });
   });
 });
