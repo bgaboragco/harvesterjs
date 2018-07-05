@@ -228,6 +228,54 @@ describe('EventSource implementation for resource changes', function() {
       }
     );
 
+
+    describe(
+      'Given a resource x' + '\n When that resource is deleted',
+      function() {
+        it(
+              'Then an SSE is broadcast with event ID set to the oplog timestamp' +
+              'and data set to an object with the _id of the deleted document',
+              function(done) {
+                var payloads = [
+                  {
+                    books: [
+                      {
+                        title: 'test title 4',
+                        author: 'Asimov',
+                      },
+                    ],
+                  }
+                ];
+                $http
+                  .post(baseUrl + '/books', { json: payloads[0] })
+                  .spread(function(res) {
+                    var counter = 0;
+                    var documentId = res.body.books[0].id;
+                    var expected = {
+                      _id: documentId
+                    };
+
+                    var eventSource = ess(baseUrl + '/books/changes/stream', {
+                      retry: false,
+                    }).on('data', function(response) {
+                      var data = JSON.parse(response.data);
+                      if (counter === 0) {
+                        $http.del(baseUrl + '/books/' + documentId);
+                      }
+                      if (counter === 1) {
+                        expect(data).to.deep.equal(expected);
+                      }
+                      if (counter === 2) {
+                        done();
+                        eventSource.destroy();
+                      }
+                      counter++;
+                    });
+                  });
+              }
+          );
+      }
+    );
     describe('When I update collection document directly through mongodb adapter', function() {
       var documentId = '';
 
