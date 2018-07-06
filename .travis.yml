@@ -1,16 +1,13 @@
 language: node_js
 node_js:
-  - '0.10'
-env:
-  - DEBUG=events-reader MONGODB_URL=mongodb://127.0.0.1:27017/test OPLOG_MONGODB_URL=mongodb://127.0.0.1:27017/local
+  - '8.4.0'
+services:
+  - docker
 before_script:
-  - mongo --version
-  - mkdir -p db/test
-  - mongod --port 27017 --dbpath db/test --replSet rs0 --oplogSize 20 --noprealloc --fork --smallfiles --logpath mongodb.log
-  - sleep 3
-  - mongo admin --eval 'printjson(rs.initiate());'
-  - sleep 20
-script: ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+  - docker-compose -f docker-compose.test.yml up -d db
+  - docker-compose -f docker-compose.test.yml up initReplicaset
+  - docker-compose -f docker-compose.test.yml build test
+script: docker-compose -f docker-compose.test.yml run test
 deploy:
   provider: npm
   email: developer@agcocorp.com
@@ -20,4 +17,3 @@ deploy:
     tags: true
     repo: agco/harvesterjs
     branch: master
-

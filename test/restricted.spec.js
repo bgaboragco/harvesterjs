@@ -1,52 +1,45 @@
 'use strict';
 let should = require('should');
 let supertest = require('supertest');
-let seeder = require('./seeder.js');
 
-describe('Immutable', function() {
+describe('Restricted', function() {
   var config;
-  var ids;
 
-  beforeEach(function() {
+  before(function() {
     config = this.config;
-    return seeder(this.harvesterApp)
-      .dropCollectionsAndSeed('immutables')
-      .then(function(_ids) {
-        ids = _ids;
-      });
   });
 
-  it('should be possible to post', function(done) {
+  it('should NOT be possible to post', function(done) {
     var data = {
-      immutables: [{ name: 'Jack' }],
+      restricts: [{ name: 'Jack' }],
     };
     supertest(config.baseUrl)
-      .post('/immutables')
+      .post('/restricts')
       .send(data)
       .expect('Content-Type', /json/)
-      .expect(201)
+      .expect(405)
       .end(function(error) {
         should.not.exist(error);
         done();
       });
   });
 
-  it('should be possible to get', function(done) {
+  it('should not be possible to get', function(done) {
     supertest(config.baseUrl)
-      .get('/readers')
+      .get('/restricts')
       .expect('Content-Type', /json/)
-      .expect(200)
+      .expect(405)
       .end(function(error) {
         should.not.exist(error);
         done();
       });
   });
 
-  it('should be possible to getById', function(done) {
+  it('should not be possible to getById', function(done) {
     supertest(config.baseUrl)
-      .get('/immutables/' + ids.immutables[0])
+      .get('/restricts/' + 1)
       .expect('Content-Type', /json/)
-      .expect(200)
+      .expect(405)
       .end(function(error) {
         should.not.exist(error);
         done();
@@ -55,7 +48,7 @@ describe('Immutable', function() {
 
   it('should NOT be possible to deleteById', function(done) {
     supertest(config.baseUrl)
-      .delete('/immutables/' + ids.immutables[0])
+      .delete('/restricts/' + 1)
       .expect('Content-Type', /json/)
       .expect(405)
       .end(function(error) {
@@ -66,10 +59,10 @@ describe('Immutable', function() {
 
   it('should NOT be possible to putById', function(done) {
     var data = {
-      immutables: [{ name: 'Duck' }],
+      restricts: [{ name: 'Duck' }],
     };
     supertest(config.baseUrl)
-      .put('/immutables/' + ids.immutables[0])
+      .put('/restricts/' + 1)
       .send(data)
       .expect('Content-Type', /json/)
       .expect(405)

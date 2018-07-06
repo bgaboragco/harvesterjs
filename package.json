@@ -1,7 +1,7 @@
 {
   "name": "harvesterjs",
   "description": "a library which makes it easy to construct a JSON-API compliant REST API (http://jsonapi.org/) with Nodejs and Mongodb",
-  "version": "2.3.4",
+  "version": "3.2.3",
   "license": "MIT",
   "author": {
     "name": "Kristof Sajdak",
@@ -19,46 +19,52 @@
     "url": "https://github.com/agco/harvesterjs"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha && npm run lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "main": "./lib/harvester.js",
   "dependencies": {
     "bluebird": "^2.9.27",
     "body-parser": "~1.4.3",
+    "debounce-promise": "^3.0.1",
     "debug": "^2.1.1",
     "express": "~4.6.1",
     "highland": "^2.5.1",
+    "http-as-promised": "^1.1.0",
     "i": "~0.3.2",
     "joi": "^6.4.3",
     "lodash": "~3.7.0",
     "longjohn": "^0.2.4",
     "mkdirp": "~0.5.0",
-    "mongodb": "^1.4.26",
-    "mongojs": "^0.18.0",
-    "mongoose": "4.2.8",
+    "mongodb": "^2.2.26",
+    "mongoose": "4.10.8",
     "node-uuid": "^1.4.3",
     "throttle-function": "^0.1.0",
     "tiny-sse": "git+https://github.com/agco/node-tiny-sse.git",
-    "underscore.string": "^2.4.0"
+    "underscore.string": "^2.4.0",
+    "agco-logger": "git+https://github.com/agco/agco-logger.git#c14fba9712968a0509bbf2c69c33a167a6cc1b07"
   },
   "devDependencies": {
     "agco-event-source-stream": "^1.1.1",
     "chai": "^1.10.0",
     "chai-http": "^1.0.0",
     "coveralls": "^2.11.2",
-    "http-as-promised": "^0.1.0",
+    "eslint": "^3.18.0",
+    "eslint-plugin-node": "^4.2.2",
     "istanbul": "^0.3.7",
-    "mocha": "~1.20.1",
+    "mocha": "3.4.2",
     "mocha-lcov-reporter": "0.0.2",
     "nock": "^0.56.0",
     "profanity-util": "0.0.2",
     "request-debug": "^0.1.1",
     "should": "~4.0.4",
+    "sinon": "^1.17.6",
     "sleep": "^1.2.0",
     "supertest": "~0.13.0"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": "8.4.0"
   },
   "keywords": [
     "json",
