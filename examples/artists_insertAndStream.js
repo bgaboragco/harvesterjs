@@ -1,6 +1,7 @@
 'use strict';
 // eslint-disable-next-line
 let harvester = require('../lib/harvester');
+const Types = require('@hapi/joi');
 
 let dockerHostURL = process.env.DOCKER_HOST;
 let mongodbHostname;
@@ -23,7 +24,7 @@ harvester({
   oplogConnectionString: 'mongodb://' + mongodbHostname + ':27017/local',
 })
   .resource('artists', {
-    name: String,
+    name: Types.string(),
   })
   .listen(apiPort);
 
@@ -31,7 +32,7 @@ harvester({
 let ess = require('agco-event-source-stream');
 
 ess(apiHost + '/artists/changes/stream').on('data', function(data) {
-  console.log('recevied artist change event', data);
+  console.log('received artist change event', data);
 });
 
 // add some data
