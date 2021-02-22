@@ -310,7 +310,7 @@ describe('EventSource implementation for resource changes', function() {
           if (counter === 0) {
             harvesterApp.adapter.db.collections.books.findOneAndUpdate(
               { _id: documentId },
-              { title: 'The Bourne Supremacy' }
+              { $set: {title: 'The Bourne Supremacy'} }
             );
           }
           if (counter === 1) {

@@ -1,16 +1,10 @@
-db:
-  image: mongo:2.6
-  command: mongod --replSet "test" --smallfiles
-  expose:
-    - "27017"
-  ports:
-    - "27017:27017"
+version: '2.3'
 
-es:
-  image: library/elasticsearch
-  expose:
-    - "9200"
-    - "9300"
-  ports:
-    - "9200:9200"
-    - "9300:9300"
+services:
+  db:
+    image: mongo:4.0
+    command: mongod --replSet "test" --smallfiles
+    expose:
+      - "27017"
+    ports:
+      - "27017:27017"
