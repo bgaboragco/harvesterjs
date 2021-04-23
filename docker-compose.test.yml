@@ -2,7 +2,7 @@ version: "2"
 services:
   test:
     build: .
-    command: bash -c "sleep 20 && npm test"
+    command: bash -c "sleep 30 && npm test"
     depends_on:
       - db
     environment:
@@ -10,8 +10,8 @@ services:
       - MONGODB_URL=mongodb://db:27017/test
       - OPLOG_MONGODB_URL=mongodb://db:27017/local
   db:
-    image: mongo:3.4.0
-    command: mongod --replSet rs0 --oplogSize 20 --smallfiles --nojournal
+    image: mongo:4.0
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "test", "--journal", "--dbpath", "/data/db", "--enableMajorityReadConcern", "false" ]
   initReplicaset:
-    image: mongo:3.4.0
-    command: bash -c "sleep 10 && mongo admin --host db:27017 --eval 'printjson(rs.initiate());'"
+    image: mongo:4.0
+    command: bash -c "sleep 20 && mongo admin --host db:27017 --eval 'printjson(rs.initiate());'"
