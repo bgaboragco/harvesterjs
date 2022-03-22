@@ -142,7 +142,7 @@ describe('remote link', function() {
             .expect(200)
             .end(function(error, response) {
               var body = response.body;
-              _.pluck(body.linked.people, 'id').should.eql([that.authorId]);
+              _.map(body.linked.people, 'id').should.eql([that.authorId]);
               done();
             });
         });
@@ -159,8 +159,8 @@ describe('remote link', function() {
             .expect(200)
             .end(function(error, response) {
               var body = response.body;
-              _.pluck(body.linked.people, 'id').should.eql([that.authorId]);
-              _.pluck(body.linked.countries, 'id').should.eql([that.countryId]);
+              _.map(body.linked.people, 'id').should.eql([that.authorId]);
+              _.map(body.linked.countries, 'id').should.eql([that.countryId]);
               done();
             });
         });
@@ -177,9 +177,9 @@ describe('remote link', function() {
             .expect(200)
             .end(function(error, response) {
               var body = response.body;
-              _.pluck(body.linked.people, 'id').should.eql([that.authorId]);
-              _.pluck(body.linked.countries, 'id').should.eql([that.countryId]);
-              _.pluck(body.linked.comments, 'id').should.eql([that.commentId]);
+              _.map(body.linked.people, 'id').should.eql([that.authorId]);
+              _.map(body.linked.countries, 'id').should.eql([that.countryId]);
+              _.map(body.linked.comments, 'id').should.eql([that.commentId]);
               done();
             });
         });

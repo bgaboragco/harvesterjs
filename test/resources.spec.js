@@ -29,7 +29,7 @@ describe('resources', function() {
             should.not.exist(error);
             var body = JSON.parse(response.text);
             ids[key].forEach(function(id) {
-              _.contains(_.pluck(body[key], 'id'), id).should.equal(true);
+              _.includes(_.map(body[key], 'id'), id).should.equal(true);
             });
             done();
           });

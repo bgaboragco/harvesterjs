@@ -21,7 +21,7 @@ describe('paging', function() {
         var body = JSON.parse(res.text);
         // console.log(body);
         body.people.length.should.equal(1);
-        _.pluck(body.people, 'name').should.eql(['Catbert']);
+        _.map(body.people, 'name').should.eql(['Catbert']);
         done();
       });
   });
@@ -35,7 +35,7 @@ describe('paging', function() {
         var body = JSON.parse(res.text);
         // console.log(body);
         body.people.length.should.equal(1);
-        _.pluck(body.people, 'name').should.eql(['Dilbert']);
+        _.map(body.people, 'name').should.eql(['Dilbert']);
         done();
       });
   });
