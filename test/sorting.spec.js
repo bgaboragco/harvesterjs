@@ -19,7 +19,7 @@ describe('sorting', function() {
       .end(function(err, res) {
         should.not.exist(err);
         var body = JSON.parse(res.text);
-        _.pluck(body.people, 'name').should.eql([
+        _.map(body.people, 'name').should.eql([
           'Catbert',
           'Dilbert',
           'Wally',
@@ -35,7 +35,7 @@ describe('sorting', function() {
       .end(function(err, res) {
         should.not.exist(err);
         var body = JSON.parse(res.text);
-        _.pluck(body.people, 'name').should.eql([
+        _.map(body.people, 'name').should.eql([
           'Wally',
           'Dilbert',
           'Catbert',
@@ -51,7 +51,7 @@ describe('sorting', function() {
       .end(function(err, res) {
         should.not.exist(err);
         var body = JSON.parse(res.text);
-        _.pluck(body.people, 'name').should.eql([
+        _.map(body.people, 'name').should.eql([
           'Catbert',
           'Wally',
           'Dilbert',
