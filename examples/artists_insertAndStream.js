@@ -1,7 +1,7 @@
 'use strict';
 // eslint-disable-next-line
 let harvester = require('../lib/harvester');
-const Types = require('@hapi/joi');
+const Types = require('joi');
 
 let dockerHostURL = process.env.DOCKER_HOST;
 let mongodbHostname;
@@ -31,7 +31,7 @@ harvester({
 // subscribe to the artists change events stream (SSE)
 let ess = require('agco-event-source-stream');
 
-ess(apiHost + '/artists/changes/stream').on('data', function(data) {
+ess(apiHost + '/artists/changes/stream').on('data', function (data) {
   console.log('received artist change event', data);
 });
 
@@ -47,13 +47,13 @@ let sepultura = {
 };
 
 // wait a bit for the event stream to open before posting the artist
-setTimeout(function() {
+setTimeout(function () {
   $http
     .post(apiHost + '/artists', { json: sepultura })
-    .spread(function(response, body) {
+    .spread(function (response, body) {
       console.log(body);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.error(error);
     });
 }, 2000);

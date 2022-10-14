@@ -1,7 +1,7 @@
 {
   "name": "harvesterjs-examples",
   "dependencies": {
-    "@hapi/joi": "^15.1.1",
+    "joi": "^17.6.3",
     "agco-event-source-stream": "^1.1.1",
     "http-as-promised": "^1.0.0"
   },
